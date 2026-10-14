@@ -42,7 +42,7 @@ seo=get('seo/pages') or {}
 if not isinstance(seo,dict):raise RuntimeError('Firebase seo/pages format incorrect')
 filenames=['index.html','ar.html','omra-tunisie.html','ar-omra-tunisie.html','hotels-tunisie.html','ar-hotels-tunisie.html','vols-tunisie.html','ar-vols-tunisie.html','voyages-organises-tunisie.html','ar-voyages-tunisie.html']
 for file in filenames:
- if (ROOT/file).exists():render(file,seo.get(file,{}))
+ if (ROOT/file).exists():render(file,seo.get(file.replace('.','_'),seo.get(file,{})))
 # Add reciprocal hreflang and canonical links for the matching FR/AR pairs.
 for fr,ar in [('index.html','ar.html'),('omra-tunisie.html','ar-omra-tunisie.html'),('hotels-tunisie.html','ar-hotels-tunisie.html'),('vols-tunisie.html','ar-vols-tunisie.html'),('voyages-organises-tunisie.html','ar-voyages-tunisie.html')]:
  for p in [ROOT/fr,ROOT/ar]:
